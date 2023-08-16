@@ -11,5 +11,6 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('room/', TemplateView.as_view(template_name='room.html'), name='room'),
     path('service/', TemplateView.as_view(template_name='service.html'), name='service'),
+    path('team/', TemplateView.as_view(template_name='team.html'), name='team'),
 
 ]
