@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 
 
@@ -12,5 +12,6 @@ urlpatterns = [
     path('room/', TemplateView.as_view(template_name='room.html'), name='room'),
     path('service/', TemplateView.as_view(template_name='service.html'), name='service'),
     path('team/', TemplateView.as_view(template_name='team.html'), name='team'),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
 
 ]
