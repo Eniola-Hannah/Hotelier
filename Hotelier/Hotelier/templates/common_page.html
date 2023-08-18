@@ -80,24 +80,29 @@
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                                 <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
                                 <a href="{% url 'room' %}" class="nav-item nav-link">Rooms</a>
                                 <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                                {% if request.user.is_authenticated %}
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{% url 'booking' %}" class="dropdown-item">Booking</a>
                                         <a href="{% url 'team' %}" class="dropdown-item">Our Team</a>
-                                        <a href="#" class="dropdown-item">Testimonial</a>
+                                        <a href="#" class="dropdown-item">Change Password</a>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary ml-lg-3" href="{% url 'login' %}">Login</a>
+                                <a href="{% url 'logout' %}" class="nav-item nav-link">Log-out</a>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="nav-item nav-link">Log-in</a>
+                                <a href="#" class="nav-item nav-link">Sign-up</a>
+                                {% endif %}
+
                             </div>
-                            <a href="#" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Premium Version<i class="fa fa-arrow-right ms-3"></i></a>
                         </div>
                     </nav>
                 </div>
