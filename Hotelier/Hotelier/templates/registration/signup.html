@@ -1,0 +1,29 @@
+{% extends "common_page.html" %} 
+   {% block title %} Sign Up {% endblock title %}
+   {% load static %}
+   {% block  body_content %}
+
+
+   <section id="home" class="slider-area pt-100 mt-5">
+    <div class="container-fluid position-relative">
+        <div class="slider-active ">
+            <div class="single-slider">
+                <div class="slider-bg">
+                <h1 class="text-center">SIGN UP</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% load bootstrap %}
+                    {{form |bootstrap_horizontal:'col-lg-6'}}
+
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <input class='btn btn-primary me-3 mb-3' type='submit' value='Sign Up'>
+                    </div>
+                </form>
+                </div> 
+            </div> <!-- row -->
+        </div> <!-- contact box -->
+    </div> <!-- container -->
+</section>
+
+{% endblock body_content %}

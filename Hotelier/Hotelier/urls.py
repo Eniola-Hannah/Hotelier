@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
-from techCare.userApp.views import SignUpView
+from Hotelier.userApp.views import SignUpView
 
 
 
