@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "bootstrapform",
+    "Hotelier.userApp",
+    "Hotelier.paymentApp",
+    "Hotelier.servicesApp",
 ]
 
 MIDDLEWARE = [

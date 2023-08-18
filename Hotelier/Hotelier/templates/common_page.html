@@ -85,15 +85,15 @@
                                 <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                                 <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
-                                <a href="{% url 'room' %}" class="nav-item nav-link">Rooms</a>
                                 <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                                 {% if request.user.is_authenticated %}
+                                <a href="{% url 'room' %}" class="nav-item nav-link">Rooms</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{% url 'booking' %}" class="dropdown-item">Booking</a>
                                         <a href="{% url 'team' %}" class="dropdown-item">Our Team</a>
-                                        <a href="#" class="dropdown-item">Change Password</a>
+                                        <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
                                     </div>
                                 </div>
                                 <a href="{% url 'logout' %}" class="nav-item nav-link">Log-out</a>
