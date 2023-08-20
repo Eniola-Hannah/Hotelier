@@ -171,7 +171,7 @@
                                 {% if request.user.is_superuser %}
                                     <div class="field">
                                         <div class="control">
-                                            <a href="# ">
+                                            <a href="{% url 'edit_account' profile.user_id %}">
                                                 <button type="submit" class="btn btn-primary"> Edit Account</button>
                                             </a>
                                             
