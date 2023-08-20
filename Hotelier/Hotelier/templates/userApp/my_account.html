@@ -34,7 +34,7 @@
                                 <div class="field">
                                     <p class="card-header-title">
                                         <span class="icon"><i class="mdi mdi-account"></i></span>
-                                        {% if request.user.is_staff == 1 %} <h3>Staff ID:</h3> {% else %}  <h3>Guest ID:</h3> {% endif %} HTL-0 {{profile.user_id}}
+                                        {% if request.user.is_staff == 1 %} <h3>Staff ID:</h3> {% else %}  <h3>Guest ID:</h3> {% endif %} HTL-0{{profile.user_id}}
                                         <hr>
                                         <h3>Username:</h3> {{profile.user.username}}
                                     </p>

@@ -16,5 +16,6 @@ urlpatterns = [
     path('team/', TemplateView.as_view(template_name='team.html'), name='team'),
     re_path(r'^accounts/', include('django.contrib.auth.urls')),
     re_path(r'^accounts/signup/$', SignUpView.as_view(), name="signup"),
+    re_path(r'^userApp/', include('Hotelier.userApp.urls')),
 
 ]

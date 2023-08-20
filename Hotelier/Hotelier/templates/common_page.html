@@ -92,7 +92,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{% url 'booking' %}" class="dropdown-item">Booking</a>
-                                        <a href="{% url 'team' %}" class="dropdown-item">Our Team</a>
+                                        <a href="{% url 'my_account' request.user.id %}" class="dropdown-item">My account</a>
                                         <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
                                     </div>
                                 </div>
