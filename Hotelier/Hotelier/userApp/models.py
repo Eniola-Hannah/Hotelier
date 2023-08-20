@@ -25,6 +25,7 @@ class Profile(models.Model):
     ]
 
     position = [
+        ("CEO", "CEO"),
         ("General Manager", "General Manager"),
         ("Human Resourses Manager", "Human Resourses Manager"),
         ("Sales Manager", "Sales Manager"),

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -37,11 +38,12 @@ class Profile_form(forms.ModelForm):
     
 
     user_status = [
-        # ("Active", "Active"),
+        ("Active", "Active"),
         ("Check in", "Check in"),
         ("Check out", "Check out"),
         ("Retired", "Retired"),
         ("Resigned", "Resigned"),
+        ("Fired", "Fired"),
     ]
 
     means_of_identity = forms.ImageField(required=False, label='means of identity')
@@ -57,8 +59,8 @@ class Profile_form(forms.ModelForm):
                     "phone",
                     "date_of_birth",
                     "gender",
-                    "state",
                     "nationality",
+                    "state",
                     "means_of_identity",
                     "particulars",
                     "profile_passport",

@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 from Hotelier.userApp.views import SignUpView
+from . import settings
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 
 
 
@@ -19,3 +21,6 @@ urlpatterns = [
     re_path(r'^userApp/', include('Hotelier.userApp.urls')),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
