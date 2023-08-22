@@ -48,3 +48,14 @@ def edit_account(request, _id):
             'user_form': user_form,
             'profile_form': profile_form,
         })
+    
+@login_required
+def deactivate_account(request, _id):
+    user = User.objects.get(id=_id)
+    if user.is_active:
+        User.objects.filter(id=_id).update(is_active=False)
+        messages.success(request, ('Your Profile is successfully deactivated!'))
+    else:
+        User.objects.filter(id=_id).update(is_active=True)
+        messages.success(request, ('Your Profile is successfully activated!'))
+    return my_account(request, _id)

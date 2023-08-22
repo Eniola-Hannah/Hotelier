@@ -42,7 +42,7 @@ class Profile(models.Model):
     ]
 
     dept = [
-        ("Executive/management", "Executive/management"),
+        ("Executive/management ", "Executive/management "),
         ("Front Desk", "Front Desk"),
         ("House Keeping", "House Keeping"),
         ("Customer Care", "Customer Care"),

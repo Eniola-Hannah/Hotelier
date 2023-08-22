@@ -167,6 +167,8 @@
                                     </div>
                                 </div>
                                 <hr>
+
+
                                     
                                 {% if request.user.is_superuser %}
                                     <div class="field">
@@ -174,8 +176,7 @@
                                             <a href="{% url 'edit_account' profile.user_id %}">
                                                 <button type="submit" class="btn btn-primary"> Edit Account</button>
                                             </a>
-                                            
-                                            {% comment %} <a href="{% url 'deactivate_profile' profile.user_id %}"> {% endcomment %}
+                                            <a href="{% url 'deactivate_account' profile.user_id %}">
                                                <button type="submit" class="btn btn-dark">
                                                     {% if profile.user.is_active == 1 %}
                                                     Deactivate
