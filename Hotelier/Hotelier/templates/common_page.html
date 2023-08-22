@@ -92,6 +92,14 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{% url 'booking' %}" class="dropdown-item">Booking</a>
+                                        {% if request.user.is_superuser %}
+                                        <li><a class="dropdown-item" href="{% url 'all_staff' 'staff' %}">Staff Account</a></li>
+                                        {% endif %}
+          
+                                        {% if request.user.is_staff %}
+                                        <li><a class="dropdown-item" href="{% url 'all_guest' 'patient' %}">Guest Account</a></li>
+                                        {% endif %}
+                                                    
                                         <a href="{% url 'my_account' request.user.id %}" class="dropdown-item">My account</a>
                                         <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
                                     </div>

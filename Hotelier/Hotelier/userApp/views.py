@@ -59,3 +59,12 @@ def deactivate_account(request, _id):
         User.objects.filter(id=_id).update(is_active=True)
         messages.success(request, ('Your Profile is successfully activated!'))
     return my_account(request, _id)
+
+@login_required
+def allUser(request, user):
+    if user == "staff":
+        all_user = Profile.objects.filter(staff=True)
+    else:
+        all_user = Profile.objects.filter(staff=False)
+
+    return render(request, 'userApp/display_users.html', {'all_user': all_user, 'user': user})
