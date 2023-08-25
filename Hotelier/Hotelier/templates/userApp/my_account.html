@@ -77,6 +77,14 @@
                                 <hr>
 
                                 <div class="field">
+                                    <label class="label"> <h3>Occupation</h3></label>
+                                    <div class="control">
+                                        {{profile.occupation}}
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="field">
                                     <label class="label"> <h3>Date of birth</h3></label>
                                     <div class="control">
                                         {{profile.date_of_birth}}
@@ -170,10 +178,11 @@
 
 
                                     
-                                {% if request.user.is_superuser %}
-                                    <div class="field">
-                                        <div class="control">
-                                            <a href="{% url 'edit_account' profile.user_id %}">
+                                <div class="field">
+                                    <div class="control">
+
+                                        {% if request.user.is_superuser %}
+                                            <a href="{% url 'editAdmin_account' profile.user.id %}">
                                                 <button type="submit" class="btn btn-primary"> Edit Account</button>
                                             </a>
                                             <a href="{% url 'deactivate_account' profile.user_id %}">
@@ -185,9 +194,14 @@
                                                     {% endif %}
                                                 </button>
                                             </a>
-                                        </div>
+                                        {% else %}
+                                            <a href="{% url 'editUser_account' profile.user_id %}">
+                                                <button type="submit" class="btn btn-primary"> Edit Account</button>
+                                            </a>
+                                        {% endif %}
+
                                     </div>
-                                {% endif %}
+                                </div>
                         {% endfor %}
                     {% endif %}
     

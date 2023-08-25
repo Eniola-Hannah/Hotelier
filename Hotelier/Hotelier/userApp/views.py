@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic
-from .forms import SignUpForm, User_form, Profile_form
+from .forms import SignUpForm, User_form, AdminProfile_form, UserProfile_form
 from .models import Profile
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -20,16 +20,41 @@ class SignUpView(generic.CreateView):
 @login_required
 def my_account(request, _id):
     profile = Profile.objects.all().filter(user_id=_id) 
-    print(profile)
     # every render must return, add return and request as a parameter
     return render(request=request, template_name="userApp/my_account.html", context={"my_profile":profile})  
 
 @login_required
-def edit_account(request, _id):
+def editAdmin_account(request, _id):
     user = get_object_or_404(User, id=_id)
     if request.method == "POST":
         user_form = User_form(request.POST, instance=user)
-        profile_form = Profile_form(request.POST or None, request.FILES or None, instance=user.profile)
+        admin_profile_form = AdminProfile_form(request.POST or None, request.FILES or None, instance=user.profile)
+
+        if user_form.is_valid() and admin_profile_form.is_valid():
+            user_form.save()
+            admin_profile_form.save()
+            messages.success(request, ('Your profile has been successfully updated!'))
+            return my_account(request, _id)
+        
+        else:
+            messages.error(request, ('Please correct the error below.'))
+            return HttpResponsePermanentRedirect(reverse('editAdmin_account', args=(_id,)))
+        
+    else:
+        user_form = User_form(instance=user)
+        admin_profile_form = UserProfile_form(instance=user.profile)
+        return render(request, 'userApp/edit_profile_form.html', {
+            'user_form': user_form,
+            'admin_profile_form': admin_profile_form,
+        })
+    
+
+@login_required
+def editUser_account(request, _id):
+    user = get_object_or_404(User, id=_id)
+    if request.method == "POST":
+        user_form = User_form(request.POST, instance=user)
+        profile_form = UserProfile_form(request.POST or None, request.FILES or None, instance=user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -39,11 +64,11 @@ def edit_account(request, _id):
         
         else:
             messages.error(request, ('Please correct the error below.'))
-            return HttpResponsePermanentRedirect(reverse('edit_profile', args=(_id,)))
+            return HttpResponsePermanentRedirect(reverse('editUser_account', args=(_id,)))
         
     else:
         user_form = User_form(instance=user)
-        profile_form = Profile_form(instance=user.profile)
+        profile_form = UserProfile_form(instance=user.profile)
         return render(request, 'userApp/edit_profile_form.html', {
             'user_form': user_form,
             'profile_form': profile_form,

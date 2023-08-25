@@ -10,36 +10,28 @@
                     <form method="POST" class='mt-4' enctype="multipart/form-data">
                         {% csrf_token %}
                         {% load bootstrap %}
-                        {% comment %} <p><span class="date text-pink text-size-30px mt-5">
+                        <p><span class="date text-pink text-size-30px mt-5">
                             {% if messages %}
                                 {% for message in messages %}
                                     {{message}}
                                 {% endfor %}
-                            {% endif %}
-                        </span></p> {% endcomment %}
-                       {{user_form|bootstrap}} 
-                       {{profile_form|bootstrap}}
-                       {% comment %} {% if request.user.is_superuser %}
+                            {% endif %}</span>
+                        </p>
 
-                            {{profile_form|bootstrap}}
+                       {{user_form|bootstrap}} 
+
+                       {% if request.user.is_superuser %}
+
+                            {{admin_profile_form|bootstrap}}
                             
                         {% else %}
                             
-                            {{profile_form.address|bootstrap}}
-                            {{profile_form.phone|bootstrap}}
-                            {{profile_form.date_of_birth|bootstrap}}
-                            {{profile_form.gender|bootstrap}}
-                            {{profile_form.state|bootstrap}}
-                            {{profile_form.nationality|bootstrap}}
-                            {{profile_form.profile_passport|bootstrap}}
-                            {{profile_form.marital_status|bootstrap}}
-                            {{profile_form.next_of_kin|bootstrap}}
+                            {{profile_form|bootstrap}}
 
-
-                        {% endif %} {% endcomment %}
+                        {% endif %}
 
                         <div class="d-flex justify-content-center"></div>
-                        <input class="bc-white mt-2 ml-2 loginbutton" type="submit" value="Update Profile">
+                        <input class="bc-white mt-2 ml-2 loginbutton btn btn-sm btn-primary" type="submit" value="Update Profile">
                     </form>
                 </div>
         </div>

@@ -29,7 +29,7 @@ class User_form(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 
-class Profile_form(forms.ModelForm):
+class AdminProfile_form(forms.ModelForm):
     gend = [
         ("Male", "Male"),
         ("Female", "Female"),
@@ -57,18 +57,51 @@ class Profile_form(forms.ModelForm):
         fields = [
                     "address",
                     "phone",
+                    "occupation",
                     "date_of_birth",
                     "gender",
                     "nationality",
                     "state",
+                    "profile_passport",
                     "means_of_identity",
                     "particulars",
-                    "profile_passport",
                     "position",
                     "department",
                     "marital_status",
                     "next_of_kin",
                     "staff",
+                ]
+        
+        widgets = {
+            'date_of_birth': forms.NumberInput(attrs={'type': 'date'}),
+        }
+
+class UserProfile_form(forms.ModelForm):
+    gend = [
+        ("Male", "Male"),
+        ("Female", "Female"),
+        ("LGBTQ+", "LGBTQ+"),
+    ]
+    
+
+    means_of_identity = forms.ImageField(required=False, label='means of identity')
+    profile_passport = forms.ImageField(required=False, label='profile passport')
+    gender = forms.ChoiceField(choices=gend, required=True, widget=forms.RadioSelect)
+    
+    class Meta: 
+        model = Profile
+        fields = [
+                    "address",
+                    "phone",
+                    "occupation",
+                    "date_of_birth",
+                    "gender",
+                    "nationality",
+                    "state",
+                    "profile_passport",
+                    "means_of_identity",
+                    "marital_status",
+                    "next_of_kin",
                 ]
         
         widgets = {
