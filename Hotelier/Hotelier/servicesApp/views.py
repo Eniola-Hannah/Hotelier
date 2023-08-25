@@ -17,3 +17,11 @@ def createService(request):
     else:
         service_form = Services_form()
         return render(request=request, template_name='servicesApp/create_service.html', context={"serviceForm": service_form})
+
+@login_required
+def displayServices(request, display):
+    services = Service.objects.all()
+    if display == "service_nologin":
+        return render(request=request, template_name='servicesApp/services.html', context={"services": services})
+    else:
+        return render(request=request, template_name='servicesApp/display_service.html', context={"services": services})
