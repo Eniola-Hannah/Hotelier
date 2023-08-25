@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from Hotelier.userApp.models import Profile
+from .models import Service
+
 
 class Services_form(forms.ModelForm):
     

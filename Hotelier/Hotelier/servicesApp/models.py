@@ -7,15 +7,13 @@ from django.utils import timezone
 
 class GeneralPurpose:
         dept = [
-            ("Executive/management", "Executive/management"),
-            ("Front Desk", "Front Desk"),
-            ("House Keeping", "House Keeping"),
-            ("Customer Care", "Customer Care"),
-            ("Food & Beverages", "Food & Beverages"),
-            ("Sales & Marketing", "Sales & Marketing"),
-            ("Human Resources", "Human Resources"),
-            ("Maintenance", "Maintenance"),
-            ("Security", "Security"),
+            ("Rooms & Apartment", "Rooms & Apartment"),
+            ("Food & Restaurant/Dining", "Food & Restaurant/dining"),
+            ("Concierges", "Concierges"),
+            ("Housekeeping", "Housekeeping"),
+            ("Spa & Fitness", "Spa & Fitness"),
+            ("Gym & Yoga", "Gym & Yoga"),
+            ("Event & Party", "Event & Party"),
         ]
 
         user_status = [

@@ -43,12 +43,15 @@ class Profile(models.Model):
 
     dept = [
         ("Executive/management ", "Executive/management "),
+        ("Human Resources", "Human Resources"),
+        ("Customer Care", "Customer Care"),
         ("Front Desk", "Front Desk"),
         ("House Keeping", "House Keeping"),
-        ("Customer Care", "Customer Care"),
         ("Food & Beverages", "Food & Beverages"),
         ("Sales & Marketing", "Sales & Marketing"),
-        ("Human Resources", "Human Resources"),
+        ("Spa & Fitness", "Spa & Fitness"),
+        ("Gym & Yoga", "Gym & Yoga"),
+        ("Event & Party", "Event & Party"),
         ("Maintenance", "Maintenance"),
         ("Security", "Security"),
     ]
