@@ -31,7 +31,7 @@ class Service(models.Model):
         genP = GeneralPurpose()
     
         service_id = models.AutoField(primary_key=True)
-        hod = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+        manager = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
         service_name = models.CharField(choices=genP.dept, max_length=50, null=False, unique=True)
         date_created = models.DateTimeField(auto_now_add=True)
         service_logo = models.ImageField(upload_to="service_logo/", blank=True, null=True, unique=False)

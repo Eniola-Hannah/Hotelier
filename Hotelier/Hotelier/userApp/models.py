@@ -27,7 +27,7 @@ class Profile(models.Model):
     position = [
         ("CEO", "CEO"),
         ("General Manager", "General Manager"),
-        ("Human Resourses Manager", "Human Resourses Manager"),
+        ("Manager", "Manager"),
         ("Sales Manager", "Sales Manager"),
         ("Front-Desk Receptionist", "Front-Desk Receptionist"),
         ("House Keeper", "House Keeper"),
@@ -47,6 +47,7 @@ class Profile(models.Model):
         ("Customer Care", "Customer Care"),
         ("Front Desk", "Front Desk"),
         ("House Keeping", "House Keeping"),
+        ("Rooms & Apartment", "ROoms & Apartment"),
         ("Food & Beverages", "Food & Beverages"),
         ("Sales & Marketing", "Sales & Marketing"),
         ("Spa & Fitness", "Spa & Fitness"),
