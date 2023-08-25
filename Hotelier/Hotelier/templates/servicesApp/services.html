@@ -1,0 +1,101 @@
+{% extends 'common_page.html' %}
+    {% block title %} Service {% endblock title %}
+    {% load static %}
+    {% block body_content %}
+
+        <!-- Page Header Start -->
+        <div class="container-fluid page-header mb-5 p-0" style="background-image: url({% static 'img/carousel-1.jpg' %});">
+            <div class="container-fluid page-header-inner py-5">
+                <div class="container text-center pb-5">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Services</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Services</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Service Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
+                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
+                </div>
+
+                <div class="row g-4">
+                    {% if services %}
+                    {% for service in services %}
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="service-item rounded" href="">
+                                <div class="service-icon bg-transparent border rounded p-1">
+                                    <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                        {% if service.service_logo %}
+                                            <img src="{{service.service_logo.url}}" alt="img" width="100px" height="100px" />
+                                        {% else %}
+                                            <i class="fa fa-hotel fa-2x text-primary"></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <h5 class="mb-3">{{service.service_name}}</h5>
+                                <p class="text-body mb-0">{{service.description}}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+                <div class="owl-carousel testimonial-carousel py-5">
+                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/testimonial-1.jpg' %}" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                    </div>
+                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/testimonial-2.jpg' %}" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                    </div>
+                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/testimonial-3.jpg' %}" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+{% endblock body_content %}
