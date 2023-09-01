@@ -1,0 +1,26 @@
+{% extends "common_page.html" %}
+
+{% block title %} Edit Services form {% endblock title%}
+
+{% block body_content %}
+<div>
+    <div class='row'>
+      <div class='col-3'></div>
+      <div class='col-md-6 col-12 col-offset-3'>
+            <form method="post" class="mt-4" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% load bootstrap %}
+
+                {{service_form|bootstrap}}
+
+                <div class='d-flex justify-content-center'>
+                <input class="bc-white btn btn-primary mt-2 ml-2 me-3 loginbutton" type="submit" value="Update">
+                
+                </div>
+        </form>  
+      </div>
+      </div>
+      <div class='col-3'></div> 
+    </div>
+</div>
+{% endblock body_content %}
