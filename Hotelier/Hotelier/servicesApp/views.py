@@ -19,32 +19,12 @@ def createService(request):
         service_form = Services_form()
         return render(request=request, template_name='servicesApp/create_service.html', context={"serviceForm": service_form})
     
-@login_required
-def createRoom(request):
-    if request.method == 'POST':
-        room_form = Rooms_form(request.POST, request.FILES)
-        if room_form.is_valid():
-            room_form.save()
-        return displayRooms(request, "adminRoomPage")
-    else:
-        room_form = Rooms_form()
-        return render(request=request, template_name='servicesApp/create_room.html', context={"roomForm": room_form})
-               
-    
 
 def indexService(request):
     services = Service.objects.all()
     services = services[0:6]
     return render(request=request, template_name='index.html', context={"services": services})
 
-
-@login_required
-def displayRooms(request, display):
-    rooms = Room.objects.all()
-    if display == "indexRoomPage":
-        return render(request=request, template_name='servicesApp/rooms.html', context={"rooms": rooms})
-    else:
-        return render(request=request, template_name='servicesApp/display_room.html', context={"rooms": rooms})
 
 @login_required
 def displayServices(request, display):
@@ -72,3 +52,25 @@ def editServices(request, serv_id):
         return render(request, 'servicesApp/edit_service_form.html', {
         'service_form': service_form,    
     })
+
+
+@login_required
+def createRoom(request):
+    if request.method == 'POST':
+        room_form = Rooms_form(request.POST, request.FILES)
+        if room_form.is_valid():
+            room_form.save()
+        return displayRooms(request, "adminRoomPage")
+    else:
+        room_form = Rooms_form()
+        return render(request=request, template_name='servicesApp/create_room.html', context={"roomForm": room_form})
+    
+
+@login_required
+def displayRooms(request, display):
+    rooms = Room.objects.all()
+    if display == "indexRoomPage":
+        return render(request=request, template_name='servicesApp/rooms.html', context={"rooms": rooms})
+    else:
+        return render(request=request, template_name='servicesApp/display_room.html', context={"rooms": rooms})
+    
