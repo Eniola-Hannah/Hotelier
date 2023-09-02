@@ -26,6 +26,14 @@ def indexService(request):
     return render(request=request, template_name='index.html', context={"services": services})
 
 
+# @login_required
+# def displayRooms(request, display):
+#     services = Service.objects.all()
+#     if display == "service_nologin":
+#         return render(request=request, template_name='servicesApp/services.html', context={"services": services})
+#     else:
+#         return render(request=request, template_name='servicesApp/display_service.html', context={"services": services})
+
 @login_required
 def displayServices(request, display):
     services = Service.objects.all()

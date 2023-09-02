@@ -32,9 +32,9 @@
                 <div class="row g-4">
                     {% if services %}
                     {% for service in services %}
-                        {% comment %} <a href="{% url 'rooms_details' service.service_id %}" > {% endcomment %}
+                    <a class="" href="{% url 'service_details' service.service_id %}">
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="service-item rounded" href="">
+                                <a class="service-item rounded" href="{% if service_id == 2 %} {% url 'room_details' service.service_id %} {% else %} {% url 'service_details' service.service_id %}">
                                     <div class="service-icon bg-transparent border rounded p-1">
                                         <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
                                             {% if service.service_logo %}
