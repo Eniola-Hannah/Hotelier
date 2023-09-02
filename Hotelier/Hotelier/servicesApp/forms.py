@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from Hotelier.userApp.models import Profile
-from .models import Service
+from .models import Service, Room
 
 
 class Services_form(forms.ModelForm):
@@ -28,7 +28,7 @@ class Rooms_form(forms.ModelForm):
     room_image = forms.FileField(required=False)
     description = forms.CharField(widget=forms.Textarea())
     class Meta:
-        model = Service
+        model = Room
         fields = [
             'room_name',
             'room_image',

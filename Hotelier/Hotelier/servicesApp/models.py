@@ -40,11 +40,9 @@ class Service(models.Model):
 
 
 
-class Room(models.Model): 
-        genP = GeneralPurpose()
-    
+class Room(models.Model):     
         room_id = models.AutoField(primary_key=True)
-        room_name = models.CharField(choices=genP.dept, max_length=50, null=False, unique=True)
+        room_name = models.CharField(max_length=70, null=False, unique=True)
         date_created = models.DateTimeField(auto_now_add=True)
         room_image = models.ImageField(upload_to="room_image/", blank=True, null=True, unique=False)
         price = models.BigIntegerField(unique=False)

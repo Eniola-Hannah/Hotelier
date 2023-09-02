@@ -97,7 +97,7 @@
                                             <li><a class="dropdown-item" href="{% url 'create_service' %}">Create service</a></li>
                                             <li><a class="dropdown-item" href="{% url 'display_service' 'service_admin' %}">Display services</a></li> 
                                             <li><a class="dropdown-item" href="{% url 'display_room' 'adminRoomPage' %}">Display rooms</a></li> 
-                                            <li><a class="dropdown-item" href="#">Add new room</a></li>
+                                            <li><a class="dropdown-item" href="{% url 'create_room' %}">Add new room</a></li>
                                         {% endif %}
           
                                         {% if request.user.is_staff %}

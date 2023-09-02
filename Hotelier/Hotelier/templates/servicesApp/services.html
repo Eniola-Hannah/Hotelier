@@ -29,27 +29,27 @@
                     <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
                 </div>
 
-                <div class="row g-4">
-                    {% if services %}
-                        {% for service in services %}
-                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <a class="service-item rounded" href="{% if service_id == 2 %} {% url 'display_room' service.service_id %} {% else %} {% url 'service_details' service.service_id %}">
-                                        <div class="service-icon bg-transparent border rounded p-1">
-                                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                                {% if service.service_logo %}
-                                                    <img src="{{service.service_logo.url}}" alt="img" width="100px" height="100px" />
-                                                {% else %}
-                                                    <i class="fa fa-hotel fa-2x text-primary"></i>
-                                                {% endif %}
-                                            </div>
+                {% if services %}
+                    {% for service in services %}
+                        <div class="row g-4">
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <a class="service-item rounded" href="{% if service.service_id == 2 %} {% url 'display_room' 'indexRoomPage' %} {% else %} {% url 'service_details' service.service_id %} {% endif %}">
+                                    <div class="service-icon bg-transparent border rounded p-1">
+                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                            {% if service.service_logo %}
+                                                <img src="{{service.service_logo.url}}" alt="img" width="100px" height="100px" />
+                                            {% else %}
+                                                <i class="fa fa-hotel fa-2x text-primary"></i>
+                                            {% endif %}
                                         </div>
-                                        <h5 class="mb-3">{{service.service_name}}</h5>
-                                        <p class="text-body mb-0">{{service.description}}</p>
-                                    </a>
-                                </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+                                    </div>
+                                    <h5 class="mb-3">{{service.service_name}}</h5>
+                                    <p class="text-body mb-0">{{service.description}}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
         <!-- Service End -->
