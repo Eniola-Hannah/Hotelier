@@ -74,3 +74,21 @@ def displayRooms(request, display):
     else:
         return render(request=request, template_name='servicesApp/display_room.html', context={"rooms": rooms})
     
+
+@login_required
+def editRooms(request, room_id):
+    form = get_object_or_404(Room, room_id=room_id)
+    if request.method == "POST":
+        room_form = Rooms_form(request.POST or None, request.FILES or None, instance=form)
+        if room_form.is_valid():
+            room_form.save()
+            messages.success(request, ('Room has been successfully updated!'))
+            return HttpResponsePermanentRedirect(reverse('display_room', args=("adminRoomPage",)))
+        else:
+            messages.error(request, ('Please correct the error below.'))
+            return HttpResponsePermanentRedirect(reverse('edit_room', args=(room_id,)))
+    else:
+        room_form = Rooms_form(instance=form)
+        return render(request, 'servicesApp/edit_room_form.html', {
+        'room_form': room_form,    
+    })
