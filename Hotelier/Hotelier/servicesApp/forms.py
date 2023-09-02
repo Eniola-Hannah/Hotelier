@@ -22,4 +22,17 @@ class Services_form(forms.ModelForm):
             'price',
             'description',
         ]
+
+
+class Rooms_form(forms.ModelForm):
+    room_image = forms.FileField(required=False)
+    description = forms.CharField(widget=forms.Textarea())
+    class Meta:
+        model = Service
+        fields = [
+            'room_name',
+            'room_image',
+            'price',
+            'description',
+        ]
         

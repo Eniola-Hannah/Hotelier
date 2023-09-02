@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponsePermanentRedirect
-from .forms import Services_form
-from .models import Service
+from .forms import Services_form, Rooms_form
+from .models import Service, Room
 from django.urls import reverse
 from django.contrib import messages
 
@@ -19,6 +19,18 @@ def createService(request):
         service_form = Services_form()
         return render(request=request, template_name='servicesApp/create_service.html', context={"serviceForm": service_form})
     
+@login_required
+def createRoom(request):
+    if request.method == 'POST':
+        room_form = Rooms_form(request.POST, request.FILES)
+        if room_form.is_valid():
+            room_form.save()
+        return displayRooms(request, "adminRoomPage")
+    else:
+        room_form = Rooms_form()
+        return render(request=request, template_name='servicesApp/create_room.html', context={"roomForm": room_form})
+               
+    
 
 def indexService(request):
     services = Service.objects.all()
@@ -26,13 +38,13 @@ def indexService(request):
     return render(request=request, template_name='index.html', context={"services": services})
 
 
-# @login_required
-# def displayRooms(request, display):
-#     services = Service.objects.all()
-#     if display == "service_nologin":
-#         return render(request=request, template_name='servicesApp/services.html', context={"services": services})
-#     else:
-#         return render(request=request, template_name='servicesApp/display_service.html', context={"services": services})
+@login_required
+def displayRooms(request, display):
+    rooms = Room.objects.all()
+    if display == "indexRoomPage":
+        return render(request=request, template_name='servicesApp/rooms.html', context={"rooms": rooms})
+    else:
+        return render(request=request, template_name='servicesApp/display_room.html', context={"rooms": rooms})
 
 @login_required
 def displayServices(request, display):

@@ -37,3 +37,15 @@ class Service(models.Model):
         service_logo = models.ImageField(upload_to="service_logo/", blank=True, null=True, unique=False)
         price = models.BigIntegerField(unique=False)
         description = models.CharField(max_length=300, blank=True, null=True)
+
+
+
+class Room(models.Model): 
+        genP = GeneralPurpose()
+    
+        room_id = models.AutoField(primary_key=True)
+        room_name = models.CharField(choices=genP.dept, max_length=50, null=False, unique=True)
+        date_created = models.DateTimeField(auto_now_add=True)
+        room_image = models.ImageField(upload_to="room_image/", blank=True, null=True, unique=False)
+        price = models.BigIntegerField(unique=False)
+        description = models.CharField(max_length=300, blank=True, null=True)
