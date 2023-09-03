@@ -35,6 +35,7 @@ class Service(models.Model):
         service_name = models.CharField(choices=genP.dept, max_length=50, null=False, unique=True)
         date_created = models.DateTimeField(auto_now_add=True)
         service_logo = models.ImageField(upload_to="service_logo/", blank=True, null=True, unique=False)
+        # service_image = models.ImageField(upload_to="service_image/", blank=True, null=True, unique=False)
         price = models.BigIntegerField(unique=False)
         description = models.CharField(max_length=300, blank=True, null=True)
 

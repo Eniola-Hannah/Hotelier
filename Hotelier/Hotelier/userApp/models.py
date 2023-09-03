@@ -50,6 +50,7 @@ class Profile(models.Model):
         ("Rooms & Apartment", "ROoms & Apartment"),
         ("Food & Beverages", "Food & Beverages"),
         ("Sales & Marketing", "Sales & Marketing"),
+        ("restaurant & Dining", "restaurant & Dining"),
         ("Spa & Fitness", "Spa & Fitness"),
         ("Gym & Yoga", "Gym & Yoga"),
         ("Event & Party", "Event & Party"),

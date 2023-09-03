@@ -69,6 +69,7 @@ class AdminProfile_form(forms.ModelForm):
                     "department",
                     "marital_status",
                     "next_of_kin",
+                    "status",
                     "staff",
                 ]
         

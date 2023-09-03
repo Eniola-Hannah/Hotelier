@@ -55,6 +55,14 @@ def editServices(request, serv_id):
 
 
 @login_required
+def serviceDetails(request, serv_id):
+    service_detail = Service.objects.filter(service_id=serv_id)
+    # service_form = BooksService_form()
+    # return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail,"serviceForm": service_form})
+    return render(request=request, template_name='servicesApp/service_details.html')
+
+
+@login_required
 def createRoom(request):
     if request.method == 'POST':
         room_form = Rooms_form(request.POST, request.FILES)
