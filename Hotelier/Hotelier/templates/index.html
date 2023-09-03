@@ -266,8 +266,8 @@
                 <div class="row g-4">
                     
                               
-                    {% if services %}
-                    {% for service in services %}
+                    {% comment %} {% if services %}
+                    {% for service in services %} {% endcomment %}
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <a class="service-item rounded" href="">
                                 <div class="service-icon bg-transparent border rounded p-1">
@@ -283,8 +283,8 @@
                                 <p class="text-body mb-0">{{service.description}}</p>
                             </a>
                         </div>
-                    {% endfor %}
-                    {% endif %}
+                    {% comment %} {% endfor %}
+                    {% endif %} {% endcomment %}
 
                 </div>
             </div>

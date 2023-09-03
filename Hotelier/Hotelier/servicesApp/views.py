@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponsePermanentRedirect
-from .forms import Services_form, Rooms_form
-from .models import Service, Room
+from .forms import Services_form
+from .models import Service
 from django.urls import reverse
 from django.contrib import messages
 
@@ -61,42 +61,3 @@ def serviceDetails(request, serv_id):
     # return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail,"serviceForm": service_form})
     return render(request=request, template_name='servicesApp/service_details.html')
 
-
-@login_required
-def createRoom(request):
-    if request.method == 'POST':
-        room_form = Rooms_form(request.POST, request.FILES)
-        if room_form.is_valid():
-            room_form.save()
-        return displayRooms(request, "adminRoomPage")
-    else:
-        room_form = Rooms_form()
-        return render(request=request, template_name='servicesApp/create_room.html', context={"roomForm": room_form})
-    
-
-@login_required
-def displayRooms(request, display):
-    rooms = Room.objects.all()
-    if display == "indexRoomPage":
-        return render(request=request, template_name='servicesApp/rooms.html', context={"rooms": rooms})
-    else:
-        return render(request=request, template_name='servicesApp/display_room.html', context={"rooms": rooms})
-    
-
-@login_required
-def editRooms(request, room_id):
-    form = get_object_or_404(Room, room_id=room_id)
-    if request.method == "POST":
-        room_form = Rooms_form(request.POST or None, request.FILES or None, instance=form)
-        if room_form.is_valid():
-            room_form.save()
-            messages.success(request, ('Room has been successfully updated!'))
-            return HttpResponsePermanentRedirect(reverse('display_room', args=("adminRoomPage",)))
-        else:
-            messages.error(request, ('Please correct the error below.'))
-            return HttpResponsePermanentRedirect(reverse('edit_room', args=(room_id,)))
-    else:
-        room_form = Rooms_form(instance=form)
-        return render(request, 'servicesApp/edit_room_form.html', {
-        'room_form': room_form,    
-    })
