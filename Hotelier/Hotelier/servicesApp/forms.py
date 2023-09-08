@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from Hotelier.userApp.models import Profile
-from .models import Service
+from .models import Service, BookingService
 
 
 class Services_form(forms.ModelForm):
@@ -19,9 +19,18 @@ class Services_form(forms.ModelForm):
             'service_name',
             'manager',
             'service_logo',
+            'service_image',
             'price',
             'description',
         ]
 
 
-        
+class BooksService_form(forms.ModelForm):
+    class Meta:
+        model = BookingService
+        fields = [
+            'reserved_date',
+            'reserved_time',
+            'Total_no_Of_Guest',
+            'special_request',
+        ]

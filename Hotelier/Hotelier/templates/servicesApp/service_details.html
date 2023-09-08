@@ -16,25 +16,30 @@
                 </div>
             </div> <!-- .row -->
         
+            {% if service_details %}
+            {% for service in service_details %}
+
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-9">
                     <article class="service-details">
 
                         <div class="card text-bg-dark">
-                            <img src="{% static 'img/room-2.jpg' %}" class="card-img" alt="...">
+                            <img src="{{service.service_image.url}}" class="card-img" alt="...">
                             <div class="card-img-overlay">
-                                <h3 class="card-title">Junior Suite</h3>
-                                <p class="card-text text-dark"><b>$2000</b></p>
+                                <h3 class="card-title">{{service.service_name}}</h3>
+                                <p class="card-text text-dark"><b>${{service.price}}</b></p>
                             </div>
                         </div>
 
                     </article> <!-- .blog-details -->
                 </div>
 
-                <div class="col-lg-1"></div> 
+                {% endfor %}
+                {% endif %}
 
+                <div class="col-lg-1"></div> 
                 
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <div class="sidebar">
                         </div>
                         <div class="sidebar-block">
@@ -56,7 +61,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title text-center text-primary text-uppercase">Service Booking</h6>
-                <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Service</span></h1>
+                <h1 class="mb-5">MAKE A <span class="text-primary text-uppercase">Luxury Reservation</span></h1>
             </div>
             <div class="row g-5">
                 <div class="col-lg-6">
@@ -75,32 +80,34 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-6">
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
                         <form>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
+                                        <input type="text" class="form-control" id="name" readonly>
+                                        <label for="name">{{request.user.first_name}} {{request.user.last_name}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
+                                        <input type="email" class="form-control" id="email" disabled>
+                                        <label for="email">{{request.user.email}}</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-floating date" id="date4" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                        <label for="checkout">No. of Guest</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
-                                        <label for="checkin">Check In</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating date" id="date4" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-                                        <label for="checkout">Check Out</label>
+                                        <label for="checkin">Date & Time</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -121,16 +128,6 @@
                                           <option value="3">Child 3</option>
                                         </select>
                                         <label for="select2">Select Child</label>
-                                      </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="select3">
-                                          <option value="1">Room 1</option>
-                                          <option value="2">Room 2</option>
-                                          <option value="3">Room 3</option>
-                                        </select>
-                                        <label for="select3">Select A Room</label>
                                       </div>
                                 </div>
                                 <div class="col-12">

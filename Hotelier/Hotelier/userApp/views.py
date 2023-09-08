@@ -42,7 +42,7 @@ def editAdmin_account(request, _id):
         
     else:
         user_form = User_form(instance=user)
-        admin_profile_form = UserProfile_form(instance=user.profile)
+        admin_profile_form = AdminProfile_form(instance=user.profile)
         return render(request, 'userApp/edit_profile_form.html', {
             'user_form': user_form,
             'admin_profile_form': admin_profile_form,

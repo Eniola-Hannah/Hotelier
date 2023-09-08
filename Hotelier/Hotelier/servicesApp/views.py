@@ -14,7 +14,12 @@ def createService(request):
         service_form = Services_form(request.POST, request.FILES)
         if service_form.is_valid():
             service_form.save()
-        return displayServices(request, "service_admin")
+            messages.success(request, ('Service was successfully Created!'))
+            return displayServices(request, "service_admin")
+        else:
+            messages.error(request, ('Service was not created successfully!'))
+            return render(request=request, template_name='servicesApp/create_service.html', context={"serviceForm": service_form})
+
     else:
         service_form = Services_form()
         return render(request=request, template_name='servicesApp/create_service.html', context={"serviceForm": service_form})
@@ -58,6 +63,6 @@ def editServices(request, serv_id):
 def serviceDetails(request, serv_id):
     service_detail = Service.objects.filter(service_id=serv_id)
     # service_form = BooksService_form()
+    return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail})
     # return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail,"serviceForm": service_form})
-    return render(request=request, template_name='servicesApp/service_details.html')
 

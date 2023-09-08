@@ -24,6 +24,12 @@ class GeneralPurpose:
             ("Fired", "Fired"),
         ]
 
+        reserve_status = [
+            ("Pending", "Pending"),
+            ("Confirmed", "Confirmed"),
+            ("Cancelled", "Cancelled"),
+        ]
+
     
 
 class Service(models.Model): 
@@ -38,3 +44,20 @@ class Service(models.Model):
         price = models.BigIntegerField(unique=False)
         description = models.CharField(max_length=300, blank=True, null=True)
 
+
+class BookingService(models.Model):
+        genP = GeneralPurpose()
+        
+        booking_id = models.AutoField(primary_key=True)
+        user = models.ForeignKey(User, null=False, blank=False, unique=False, on_delete=models.CASCADE)
+        service = models.ForeignKey(Service, null=False, blank=False, unique=False, on_delete=models.CASCADE)
+        service_name = models.CharField(max_length=100, blank=True, null=True, unique=False)
+        price = models.BigIntegerField(unique=False, blank=True, null=True)
+        date_created = models.DateField(auto_now_add=True)
+        reserved_date = models.DateField(null=True, blank=True, unique=False)
+        reserved_time = models.TimeField(null=True, blank=True, unique=False)
+        reservation_status = models.CharField(choices=genP.reserve_status, max_length=70, null=True, blank=True, unique=False)
+        Total_no_Of_Guest = models.BigIntegerField(unique=False, blank=True, null=True)
+        special_request = models.CharField(max_length=300, blank=True, null=True)
+        payment = models.BooleanField(default=False, blank=True, null=True, unique=False)
+        manager = models.ForeignKey(User, related_name="manager", null=False, blank=False, unique=False, on_delete=models.CASCADE )
