@@ -115,3 +115,9 @@ def serviceDetails(request, serv_id):
 def myBooking(request, user):
     booking = BookingService.objects.filter(user_id=user).order_by("date_created").reverse()
     return render(request=request, template_name='servicesApp/my_booking.html', context={"booking_service":booking})
+
+
+
+@login_required
+def bookingPayment(request, book_id):
+    pass
