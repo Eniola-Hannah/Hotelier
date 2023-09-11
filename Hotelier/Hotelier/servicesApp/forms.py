@@ -31,6 +31,13 @@ class BooksService_form(forms.ModelForm):
         fields = [
             'reserved_date',
             'reserved_time',
-            'Total_no_Of_Guest',
+            'No_Of_Guest',
             'special_request',
+
         ]
+
+        widgets = {
+            'reserved_date': forms.DateInput(attrs={'type': 'date'}),
+            'reserved_time': forms.TimeInput(attrs={'type': 'time'}),
+            'special_request': forms.Textarea(attrs={'cols':60, 'rows': 3}),
+        }

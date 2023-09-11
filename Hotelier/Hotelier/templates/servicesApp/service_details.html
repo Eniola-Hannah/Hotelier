@@ -83,62 +83,69 @@
 
                 <div class="col-lg-6">
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <p>
+                            {% comment %} <span class="date text-pink text-size-30px mt-5">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{message}}
+                                {% endfor %}
+                            {% endif %}</span> {% endcomment %}
+                          </p>
                         <form>
+                            {% csrf_token %}
+                            {% load bootstrap %}
+
                             <div class="row g-3">
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" readonly>
-                                        <label for="name">{{request.user.first_name}} {{request.user.last_name}}</label>
+                                        <input type="text" class="form-control" id="name" value="{{request.user.first_name}} {{request.user.last_name}}" readonly>
+                                        <label for="name">Full Name</label>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" disabled>
-                                        <label for="email">{{request.user.email}}</label>
+                                        <input type="email" class="form-control" id="email" value="{{request.user.email}}" disabled>
+                                        <label for="email">Email</label>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-floating date" id="date4" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-                                        <label for="checkout">No. of Guest</label>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
-                                        <label for="checkin">Date & Time</label>
+                                        {{service_form.reserved_date|bootstrap}}
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating date" id="date3" data-target-input="nearest">
+                                        {{service_form.reserved_time|bootstrap}}
+
+                                        {% comment %} <input type="text" class="form-control datetimepicker-input" id="{{service_form.reserved_time.id_for_label}}" name="{{service_form.reserved_time}}" placeholder="Reservation Time" data-target="#date3" data-toggle="datetimepicker">
+                                        <label for="checkin">Reservation Time</label> {% endcomment %}
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <select class="form-select" id="select1">
-                                          <option value="1">Adult 1</option>
-                                          <option value="2">Adult 2</option>
-                                          <option value="3">Adult 3</option>
-                                        </select>
-                                        <label for="select1">Select Adult</label>
-                                      </div>
+                                        {{service_form.No_Of_Guest|bootstrap}}
+                                        {% comment %} <input type="email" class="form-control" id="{{service_form.No_Of_Guest.id_for_label}}" name="{{service_form.No_Of_Guest.name}}" placeholder="No. Of Guest">
+                                        <label for="noOfGuest">No. of Guest</label> {% endcomment %}
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="select2">
-                                          <option value="1">Child 1</option>
-                                          <option value="2">Child 2</option>
-                                          <option value="3">Child 3</option>
-                                        </select>
-                                        <label for="select2">Select Child</label>
-                                      </div>
-                                </div>
+                        
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Special Request</label>
+                                        {{service_form.special_request|bootstrap}}
+
+                                        {% comment %} <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Special Request</label> {% endcomment %}
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
                                 </div>
+
                             </div>
                         </form>
                     </div>

@@ -57,7 +57,7 @@ class BookingService(models.Model):
         reserved_date = models.DateField(null=True, blank=True, unique=False)
         reserved_time = models.TimeField(null=True, blank=True, unique=False)
         reservation_status = models.CharField(choices=genP.reserve_status, max_length=70, null=True, blank=True, unique=False)
-        Total_no_Of_Guest = models.BigIntegerField(unique=False, blank=True, null=True)
+        No_Of_Guest = models.BigIntegerField(unique=False, blank=True, null=True)
         special_request = models.CharField(max_length=300, blank=True, null=True)
         payment = models.BooleanField(default=False, blank=True, null=True, unique=False)
         manager = models.ForeignKey(User, related_name="manager", null=False, blank=False, unique=False, on_delete=models.CASCADE )

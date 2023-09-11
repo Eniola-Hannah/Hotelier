@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponsePermanentRedirect
-from .forms import Services_form
-from .models import Service
+from .forms import Services_form, BooksService_form
+from .models import Service, BookingService
 from django.urls import reverse
 from django.contrib import messages
+from django.db import transaction
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -59,10 +61,37 @@ def editServices(request, serv_id):
     })
 
 
+@transaction.atomic
 @login_required
 def serviceDetails(request, serv_id):
-    service_detail = Service.objects.filter(service_id=serv_id)
-    # service_form = BooksService_form()
-    return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail})
-    # return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail,"serviceForm": service_form})
+    if request.method == 'POST':
+        service_form = BooksService_form(request.POST)
+        service = Service.objects.get(service_id = serv_id)
+        if service_form.is_valid():
+            form = service_form.save(commit=False)
+            form.manager_id = service.manager_id
+            form.user_id = request.user.id
+            form.service_id = service
+            form.price = service.price
+            form.service_name = service.service_option
+            form.save()
+
+            send_mail(
+                'A BOOKING HAS BEEN MADE BY A PATIENT', # Subject of the mail
+                f'Dear Dr. {service.manager.first_name}, a Guest has booked for a service. Please choose the reservation status of the booking. Thanks', # Body
+                'hotelierhaven@gmail.com', # from email(sender),
+                [service.manager.email], # To email reciever
+                fail_silently=False #Handle any error
+            )
+            
+            
+            messages.success(request, ('RESERVATION MADE SUCCESSFULLY!'))
+            return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
+        else:
+            messages.error(request, ('Please correct the error below.'))
+            return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
+    else:
+        service_detail = Service.objects.filter(service_id=serv_id)
+        service_form = BooksService_form()
+        return render(request=request, template_name='servicesApp/service_details.html', context={"service_details":service_detail,"service_form": service_form})
 

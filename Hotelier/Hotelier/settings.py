@@ -112,9 +112,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #when going on production, you can set the setting bellow
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_HOST_USER = "heniola395@gmail.com"
-# EMAIL_HOST_PASSWORD = "ennysuccess1"
-# when using TLS you use this format below
+# EMAIL_HOST_USER = "hotelierhaven@gmail.com"
+# EMAIL_HOST_PASSWORD = "ennySuccess_1"
+# # when using TLS you use this format below
 # EMAIL_USE_TLS = True
 # EMAIL_PORT = 587
 #  or this, when using SSL

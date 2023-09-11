@@ -47,7 +47,7 @@ class Profile(models.Model):
         ("Customer Care", "Customer Care"),
         ("Front Desk", "Front Desk"),
         ("House Keeping", "House Keeping"),
-        ("Rooms & Apartment", "ROoms & Apartment"),
+        ("Rooms & Apartment", "Rooms & Apartment"),
         ("Food & Beverages", "Food & Beverages"),
         ("Sales & Marketing", "Sales & Marketing"),
         ("restaurant & Dining", "restaurant & Dining"),
