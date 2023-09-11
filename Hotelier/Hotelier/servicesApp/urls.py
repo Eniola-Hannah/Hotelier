@@ -8,5 +8,8 @@ urlpatterns = [
     re_path(r'^service_details/(?P<serv_id>\d+)/', sw.serviceDetails, name="service_details"),
     re_path(r'^my_booking/(?P<user>\d+)/', sw.myBooking, name='my_booking'),
     re_path(r'^book_payment/(?P<book_id>\d+)/', sw.bookingPayment, name='book_payment'),
+    re_path(r'^guest_booking/(?P<user>\d+)/', sw.guestBooking, name='guest_booking'),
+    re_path(r'^view_booking_detail/(?P<book_id>\d+)/', sw.viewBookingDetail, name='view_booking_detail'),
+
 
 ]

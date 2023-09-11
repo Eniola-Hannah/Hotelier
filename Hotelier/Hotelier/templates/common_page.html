@@ -107,6 +107,7 @@
           
                                         {% if request.user.is_staff %}
                                             <li><a class="dropdown-item" href="{% url 'all_guest' 'patient' %}">Guest Account</a></li>
+                                            <li><a class="dropdown-item" href="{% url 'guest_booking' request.user.id %}">Guest Bookings</a></li>
                                         {% endif %}
                                                     
                                         <a href="{% url 'my_booking' request.user.id %}" class="dropdown-item">My Bookings</a>

@@ -59,6 +59,14 @@ def editUser_account(request, _id):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            if profile_form.cleaned_data['staff']:
+                user.is_staff = True
+                user.profile.staff = True
+                user.save()
+            else:
+                user.is_staff = False
+                user.profile.staff = False
+                user.save()
             messages.success(request, ('Your profile has been successfully updated!'))
             return my_account(request, _id)
         

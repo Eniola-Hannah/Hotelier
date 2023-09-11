@@ -1,0 +1,115 @@
+{% extends 'common_page.html' %}
+
+    {% block title %} GUEST BOOKINGS {% endblock title %}
+
+    {% block body_content %}
+
+    <div id="dash">
+
+        <section class="is-title-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <ul>
+                    <li>Booking History</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section main-section">
+            <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="flex items-center justify-between">
+                            <div class="widget-label">
+
+                                <p><span class="date text-pink text-size-30px">
+
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            {{message}}
+                                        {% endfor %}
+                                    {% endif %}
+
+                                </span></p>
+                                    
+                                <table class="table table-striped table-hover mx-auto px-auto">
+                                    <thead bgcolor="#969cad">
+                                        <th>GUEST ID</th><th>PICTURE</th><th>USERNAME</th><th>FULL NAME</th>
+                                        <th>SERVICE NAME</th><th>BOOKING DATE</th><th>MANAGER</th>
+                                        <th>VIEW DETAILS</th>
+                                    </thead>
+                                    {% if guest_booking %}
+
+                                    {% for guest in guest_booking %}
+
+                                        <tr>
+                                        
+                                            <td>
+                                                <span style="color: #0e399c;" class="font-weight-bold">
+                                                HTL-0{{guest.user.id}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {% if guest.user.profile_passport %}
+                                                        <img src="{{guest.user.profile_passport.url}}" alt="img" width="100px" height="100px">
+                                                    {% else %}
+                                                        <i class="fas fa-user fa-lag fa-fw text-dark me-2"></i>
+                                                    {% endif %}
+                                                        
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {{guest.user.username}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {{guest.user.first_name}} {{guest.user.last_name}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {{guest.service_name}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {{guest.date_created}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span style="color: #969cad;" class="font-weight-bold">
+                                                    {{guest.manager}}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                      
+                                                <a href="{% url 'view_booking_detail' guest.booking_id %}">
+                                                    <span style="color: #0e399c;" class="font-weight-bold">
+                                                        Booking Details
+                                                    </span>
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock body_content %}

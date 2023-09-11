@@ -117,6 +117,21 @@ def myBooking(request, user):
     return render(request=request, template_name='servicesApp/my_booking.html', context={"booking_service":booking})
 
 
+@login_required
+def guestBooking(request, user):
+    if request.user.profile.position in ["CEO", "General Manager"]:
+       my_booking = BookingService.objects.all().order_by('date_created').reverse()
+
+    elif request.user.profile.position in ["Manager", "Front-Desk Receptionist"]:
+        my_booking = BookingService.objects.filter(service_name=request.user.profile.department).order_by('date_created').reverse()
+    
+    return render(request=request, template_name='servicesApp/guest_booking.html', context={"guest_booking":my_booking})
+
+
+
+@login_required
+def viewBookingDetail(request, book_id):
+    pass
 
 @login_required
 def bookingPayment(request, book_id):

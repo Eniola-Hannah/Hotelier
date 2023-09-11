@@ -51,6 +51,8 @@ class BookingService(models.Model):
         booking_id = models.AutoField(primary_key=True)
         user = models.ForeignKey(User, null=False, blank=False, unique=False, on_delete=models.CASCADE)
         service = models.ForeignKey(Service, null=False, blank=False, unique=False, on_delete=models.CASCADE)
+        general_manager = models.ForeignKey(User, related_name="general_manager", null=False, unique=False, on_delete=models.CASCADE, default=1)
+        front_desk_receptionist = models.ForeignKey(User, related_name="front_desk_receptionist", null=False, unique=False, on_delete=models.CASCADE, default=1)
         service_name = models.CharField(max_length=100, blank=True, null=True, unique=False)
         price = models.BigIntegerField(unique=False, blank=True, null=True)
         date_created = models.DateField(auto_now_add=True)
