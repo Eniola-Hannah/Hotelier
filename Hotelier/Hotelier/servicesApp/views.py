@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.db import transaction
 from django.core.mail import send_mail
+from datetime import time
 
 
 # Create your views here.
@@ -67,29 +68,43 @@ def serviceDetails(request, serv_id):
     if request.method == 'POST':
         service_form = BooksService_form(request.POST)
         service = Service.objects.get(service_id = serv_id)
+        print(service)
         if service_form.is_valid():
-            form = service_form.save(commit=False)
-            form.manager_id = service.manager_id
-            form.user_id = request.user.id
-            form.service_id = service
-            form.price = service.price
-            form.service_name = service.service_option
-            form.save()
+            
+            reserved_time = service_form.cleaned_data.get('reserved_time')
+            start_time = time(7, 0)  # 7:00 AM
+            end_time = time(22, 0)   # 10:00 PM
 
-            send_mail(
-                'A BOOKING HAS BEEN MADE BY A PATIENT', # Subject of the mail
-                f'Dear Dr. {service.manager.first_name}, a Guest has booked for a service. Please choose the reservation status of the booking. Thanks', # Body
-                'hotelierhaven@gmail.com', # from email(sender),
-                [service.manager.email], # To email reciever
-                fail_silently=False #Handle any error
-            )
+            if start_time <= reserved_time <= end_time:
+
+                form = service_form.save(commit=False)
+                form.manager_id = service.manager_id
+                form.user_id = request.user.id
+                form.service_id = service.service_id
+                form.price = service.price
+                form.service_name = service.service_name
+                form.save()
+
+                send_mail(
+                    'A BOOKING HAS BEEN MADE BY A PATIENT', # Subject of the mail
+                    f'Dear Mr. {service.manager.first_name}, a Guest has booked for a service. Please choose the reservation status of the booking. Thanks', # Body
+                    'hotelierhaven@gmail.com', # from email(sender),
+                    [service.manager.email], # To email reciever
+                    fail_silently=False #Handle any error
+                )
+                
+                
+                messages.success(request, ('RESERVATION MADE SUCCESSFULLY!'))
+                return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
             
-            
-            messages.success(request, ('RESERVATION MADE SUCCESSFULLY!'))
-            return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
+            else: 
+                messages.error(request, ('RESERVATION CAN ONLY BE BETWEEN THE HOUR OF 7:00 AM AND 10:00 PM'))
+                return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
+
         else:
             messages.error(request, ('Please correct the error below.'))
             return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
+        
     else:
         service_detail = Service.objects.filter(service_id=serv_id)
         service_form = BooksService_form()

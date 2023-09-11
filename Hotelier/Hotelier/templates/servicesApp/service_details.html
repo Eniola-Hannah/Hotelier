@@ -63,6 +63,17 @@
                 <h6 class="section-title text-center text-primary text-uppercase">Service Booking</h6>
                 <h1 class="mb-5">MAKE A <span class="text-primary text-uppercase">Luxury Reservation</span></h1>
             </div>
+
+            <p>
+                <span class="date text-pink text-size-30px mt-5">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{message}}
+                        {% endfor %}
+                    {% endif %}
+                </span>
+            </p>
+
             <div class="row g-5">
                 <div class="col-lg-6">
                     <div class="row g-3">
@@ -83,15 +94,7 @@
 
                 <div class="col-lg-6">
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
-                        <p>
-                            {% comment %} <span class="date text-pink text-size-30px mt-5">
-                            {% if messages %}
-                                {% for message in messages %}
-                                    {{message}}
-                                {% endfor %}
-                            {% endif %}</span> {% endcomment %}
-                          </p>
-                        <form>
+                        <form method="post"> 
                             {% csrf_token %}
                             {% load bootstrap %}
 
