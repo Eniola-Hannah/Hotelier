@@ -93,7 +93,7 @@ def serviceDetails(request, serv_id):
                     fail_silently=False #Handle any error
                 )
                 
-                
+
                 messages.success(request, ('RESERVATION MADE SUCCESSFULLY!'))
                 return HttpResponsePermanentRedirect(reverse('service_details', args=(serv_id,)))
             
@@ -124,7 +124,7 @@ def guestBooking(request, user):
 
     elif request.user.profile.position in ["Manager", "Front-Desk Receptionist"]:
         my_booking = BookingService.objects.filter(service_name=request.user.profile.department).order_by('date_created').reverse()
-    
+        
     return render(request=request, template_name='servicesApp/guest_booking.html', context={"guest_booking":my_booking})
 
 
