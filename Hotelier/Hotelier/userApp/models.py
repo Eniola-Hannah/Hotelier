@@ -37,20 +37,18 @@ class Profile(models.Model):
         ("Chef", "Chef"),
         ("Sous Chef", "Sous Chef"),
         ("Security", "Security"),
-        ("Maintenace Technician", "Maintenace Technician"),
+        ("Maintenance Technician", "Maintenance Technician"),
         
     ]
 
     dept = [
         ("Executive/management ", "Executive/management "),
         ("Human Resources", "Human Resources"),
-        ("Customer Care", "Customer Care"),
-        ("Front Desk", "Front Desk"),
-        ("House Keeping", "House Keeping"),
         ("Rooms & Apartment", "Rooms & Apartment"),
+        ("House Keeping", "House Keeping"),
         ("Food & Beverages", "Food & Beverages"),
         ("Sales & Marketing", "Sales & Marketing"),
-        ("restaurant & Dining", "restaurant & Dining"),
+        ("Restaurant & Dining", "Restaurant & Dining"),
         ("Spa & Fitness", "Spa & Fitness"),
         ("Gym & Yoga", "Gym & Yoga"),
         ("Event & Party", "Event & Party"),

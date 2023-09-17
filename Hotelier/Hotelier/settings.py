@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "Hotelier.userApp",
     "Hotelier.paymentApp",
     "Hotelier.servicesApp",
-    # "Hotelier.roomApp",
+    "Hotelier.roomsApp",
 ]
 
 MIDDLEWARE = [

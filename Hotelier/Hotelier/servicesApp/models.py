@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class GeneralPurpose:
         dept = [
-            ("restaurant & Dining", "restaurant & Dining"),
+            ("Restaurant & Dining", "Restaurant & Dining"),
             ("Concierges", "Concierges"),
             ("Housekeeping", "Housekeeping"),
             ("Spa & Fitness", "Spa & Fitness"),
